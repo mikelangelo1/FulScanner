@@ -6,6 +6,14 @@ import {
   DarkTheme as NavigationDarkTheme,
 } from "@react-navigation/native";
 import { createDrawerNavigator } from '@react-navigation/drawer'
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
+import ReduxThunk from "redux-thunk";
+
+import formReducer  from "./store/reducers/formReducer";
+import imageReducer from "./store/reducers/imageReducer";
+import notificationReducer from "./store/reducers/notificationReducer";
+import authReducer from "./store/reducers/authReducer";
 
 import {
   Provider as PaperProvider,
@@ -127,6 +135,19 @@ export default function App() {
     }
   }), [])
 
+
+  //combining all the reducers into one so all components can have access to the central store
+const rootReducer = combineReducers({
+  auth: authReducer,
+  form: formReducer,
+  notification: notificationReducer,
+  image: imageReducer,
+});
+
+// creating the redux store
+const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
+
+
   useEffect(() => {
     setTimeout(async() => {
       let userToken;
@@ -148,9 +169,12 @@ export default function App() {
       </View>
     )
   }
+
+
   return (
     <PaperProvider theme={theme}>
       <AuthContext.Provider value={authContext} >
+        <Provider store={store}>
         <NavigationContainer theme={theme}>
           { loginState.userToken !== null ? (
             <Drawer.Navigator drawerContent={props => <DrawerContent {...props} />}>
@@ -164,6 +188,7 @@ export default function App() {
           }
 
         </NavigationContainer>
+        </Provider>
       </AuthContext.Provider>
     </PaperProvider>
     
