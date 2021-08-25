@@ -38,8 +38,9 @@ const Name = (props) => {
           autoCapitalize="words"
           errorText="Please enter your last name"
           onInputChange={props.change}
-          initialValue={props.values.lastname}
           textContentType="name"
+          initialValue={props.values.lastname}
+
         />
       </View>
     </SignupHOC>

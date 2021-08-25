@@ -20,6 +20,8 @@ import UserIdentity from "./UserIdentity"
 import Name from './Name';
 import Birthday from "./Birthday";
 import AuthDetails from "./AuthDetails";
+import MatricNoInput from "./MatricNoInput";
+import StaffIdInput from "./StaffIdInput";
 
 
 if (
@@ -265,7 +267,7 @@ Object.keys(state.form.inputValidities)
   const nextStep = () => {
     LayoutAnimation.configureNext(
       LayoutAnimation.create(
-        1000,
+        500,
         LayoutAnimation.Types.easeInEaseOut,
         LayoutAnimation.Properties.opacity
       )
@@ -313,15 +315,19 @@ Object.keys(state.form.inputValidities)
       case 3:
       return <UserIdentity {...prop}  />   
     case 4:
-      return <AuthDetails {...prop} />;
+      return <StaffIdInput {...prop} />
     case 5:
-      return <Verification {...prop} />;
+      return <AuthDetails {...prop} />;
     case 6:
-      return <Success {...prop} />;
+      return <Verification {...prop} />;
     case 7:
-      return <StudentAuth {...prop} />;
+      return <Success {...prop} />;
     case 8:
-      return <StudentVerification {...prop} />;
+      return <MatricNoInput {...prop} />;
+    case 9:
+      return <StudentAuth {...prop} />;
+    case 10: 
+    return <StudentVerification {...prop} />;
   }
 };
 

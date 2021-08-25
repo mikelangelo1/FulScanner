@@ -79,19 +79,19 @@ const SignupHOC = (props) => {
           )}
         </View>
         <View style={{ ...styles.buttonStyle }}>
-          {props.step === 1 &&
+          {(props.step === 1 || props.step === 2 || props.step === 4 || props.step === 8  )  &&
             (props.loading ? (
               <ActivityIndicator size="small" color={colors.primary.neon} />
-            ) : props.step === 4 || props.step === 8 ? null : (
+            ) : props.step === 6 || props.step === 10 ? null : (
               <AuthenticationButton
                 onPress={() => {
                   LayoutAnimation.configureNext(
                     LayoutAnimation.Presets.easeInEaseOut
                   );
-                  (props.ready && props.step === 4) ||
-                  (props.ready && props.step === 8)
+                  (props.ready && props.step === 6) ||
+                  (props.ready && props.step === 10)
                     ? props.recaptchaForm.refreshToken()
-                    : props.step === 4 || props.step === 8
+                    : props.step === 6 || props.step === 10
                     ? props.setReady()
                     : props.next();
                 }}
@@ -104,7 +104,7 @@ const SignupHOC = (props) => {
         {props.step === 3 && (
           <View style={styles.buttonContainer}>
             <AuthenticationButton
-              onPress={() => props.stepChange(7)}
+              onPress={() => props.stepChange(8)}
               style={{ ...styles.inviteButton, ...styles.yes }}
               textStyle={styles.buttonText}
             >

@@ -29,11 +29,11 @@ const Birthday = (props) => {
     <SignupHOC
       navigation={props.nav}
       title="Date of Birth?"
-      progress={ 2 / 8}
+      progress={ 2 / 8 }
       buttonStyle={styles.button}
       {...props}
       next={() => {
-        props.values.age > 25 ? props.next() : props.stepChange(6);
+        props.values.age > 25 ? props.next() : props.stepChange(3);
       }}
     >
       <View style={styles.datePicker}>

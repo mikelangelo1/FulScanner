@@ -4,6 +4,7 @@ const initialState = {
       firstname: "",
       lastname: "",
       staff_id: "",
+      matric_no: "",
       email: "",
       phone_no: "",
       password: "",

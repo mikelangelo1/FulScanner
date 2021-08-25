@@ -9,7 +9,7 @@ const UserIdentity = (props) => {
     <SignupHOC
       navigation={props.nav}
       title="Are you a student or a staff?"
-      progress={props.step / 5}
+      progress={props.step / 8}
       step={props.step}
       {...props}
     >
